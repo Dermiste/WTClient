@@ -1,0 +1,12 @@
+<div class="col-sm-6" id="<%= user._id %>" >
+	<div class="well" style="background-color:white;">
+	<h3><span class="fa fa-user"></span> <%= user.name %></h3>
+	    <p>
+	        <strong>id</strong>: <%= user._id %><br>
+	        <strong>email</strong>: <%= user.email %><br>
+	        <strong>password</strong>: <%= user.password %><br/>
+	        <strong>cam feed</strong>: <%= user.camFeeds.length %></br/>
+	        <p class="statusBackground <% if (user.isOnline){ %> bg-success <% }else{ %> bg-danger<% }%>"><strong>RPI</strong>: <span class="onlineStatus"><% if (user.isOnline){ %>online<%  } else { %>offline<% }%></span></p>
+	    </p>
+	</div> 
+</div>                   

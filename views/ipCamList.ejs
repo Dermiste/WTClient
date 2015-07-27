@@ -1,0 +1,100 @@
+<!doctype html>
+<html ng-app="witouch-manager">
+<head>
+    <% include ./partials/header %>
+    <script type="text/javascript" src="/static/js/socket.io-1.3.5.js"></script>
+    <script type="text/javascript" src="/static/bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/static/bower_components/angular/angular.min.js"></script>
+    <script type="text/javascript" src="/static/js/camListController.js"></script>
+
+	<script type="text/javascript" src="/static/js/swfobject.js"></script>
+	<link 	href="/static/css/ipCamList.css" rel="stylesheet" type="text/css" />
+</head>
+<body style="padding-top:20px;" ng-controller="CamController">
+<div class="container">
+
+    <div class="page-header text-center">
+        <h2><span class="fa fa-gear"></span> WiTouch - Admin page<br/><small>IP Cam list</small></h2>
+        <a href="./" class="btn btn-default btn-sm">Home</a>
+    </div>
+
+    <div class="row" style="height:100%">
+    	<div class="col-sm-5">
+	    	<table class="table table-hover" id="table" >
+	    		<caption><button class="btn btn-primary btn-sm" href="#" role="button" id="updateButton" data-loading-text="Updating... " ng-click="updateCams()">Update<!--<span class="fa fa-cog fa-spin fa-lg" id="spinner" style="margin-left:5px;display:none;" ></span>--></button>
+	    	</caption>
+	    	<thead>
+	    		<tr><th data-field="name">Name</th><th data-field="hostname">IP address</th><th data-field="state">status</th><th data-field="state">actions</th></tr>
+	    	</thead>
+	    	<tbody id="tableContent">
+	    		<tr ng-repeat="cam in cams">
+			      <td>{{cam.name}}</td>
+			      <td>{{cam.hostname}}</td>
+			      <td>{{cam.state}}</td>
+			      <td>
+			      	<button ng-click="addCam(cam)" ng-if="cam.state == 'free'" type="button" class="btn btn-default btn-xs">Add</button>
+			      	<button ng-click="removeCam(cam)" ng-if="cam.state != 'free'" type="button" class="btn btn-default btn-xs">Delete</button>
+			      	<button ng-click="viewCam(cam)" ng-if="cam.state != 'free'" type="button" class="btn btn-default btn-xs">View</button>
+			  	  </td>
+			    </tr>
+	    	</tbody>	
+			</table>
+		</div>
+		<div class="col-sm-7" id="feedLookup" ng-if="state == 'feedLookup' || state == 'feedValidation' " >
+			<h4>Cam Feed lookup <small id="feedLookupSubtitle" style="word-wrap: break-word;"></small></h3>
+			<div class="alert alert-info"><span class="fa fa-info-circle fa-2x" ></span> You can find these info in your IP cam user manual</div>
+			<form class="form-inline" >
+			  <div class="form-group">
+			    <label for="exampleInputName2">User</label>
+			    <input type="text" class="form-control" placeholder="User" id="user" ng-init="credentials.username='admin'" ng-model="credentials.username"/>
+			  </div>
+			  <div class="form-group">
+			    <label for="exampleInputName2" >Password</label>
+			    <input type="text" class="form-control" placeholder="Password" id="password" ng-init="credentials.password='tlJwpbo6'" ng-model="credentials.password" />
+			  </div>
+			  <button id="lookupButton" type="button" class="btn btn-primary btn-sm" data-loading-text="Searching ... " ng-click="feedLookup(credentials)">Ok</button>
+			  <label ng-class="lookupResult ? 'bg-success' : 'bg-danger'">{{lookupMessage}}</label>
+			</form>	
+			<div id="videoPlayerWrapper">
+				<div id="videoPlayer1"></div>
+			</div>		
+			<div id="videoActions" ng-if="state == 'feedValidation'">
+				<form class="form-inline" >
+					<div class="form-group">
+			    		<label for="exampleInputName2">Cam name</label>
+			   			<input type="text" class="form-control" placeholder="ex: Kitchen" ng-model="camName"/>
+			  		</div>
+					<button id="addButton" type="button" class="btn btn-primary btn-sm" data-loading-text="Adding ... " ng-click="registerCam(camName)">Add</button>
+				</form>	
+			</div>
+		</div>	
+		<div class="col-sm-7" id="feedViewer" ng-if="state == 'feedViewer'"  >
+			<h4>Cam Feed viewer <small id="feedLookupSubtitle" style="word-wrap: break-word;"></small></h3>
+			<div id="videoPlayerWrapper">
+				<div id="videoPlayer2"></div>
+			</div>		
+		</div>			
+    </div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+	      </div>
+	      <div class="modal-body">
+	        ...
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        <button type="button" class="btn btn-primary">Save changes</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+    
+</div>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+    <% include ./partials/header %>
+    <script src="/static/js/socket.io-1.3.5.js"></script>
+    <script src="/static/js/RPIconnectionsStatus.js"></script>   
+    <script src="/static//bower_components/jquery/dist/jquery.min.js"></script>
+</head>
+<body>
+<div class="container">
+
+    <div class="page-header text-center">
+        <h1><span class="fa fa-gear"></span> WiTouch - Admin page<br/><small><%= user.name %></small></h1>
+        <a href="./ipCamList" class="btn btn-default btn-sm">Add IP cam</a>
+    </div>
+
+    <div class="row">
+
+        <!-- LOCAL INFORMATION -->
+        <% include ./partials/user %>
+    </div>
+</div>
+</body>
+</html>
