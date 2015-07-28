@@ -5,7 +5,6 @@ var flash             = require('connect-flash');
 var express           = require('express');        // call express
 var session           = require('express-session');
 var app               = express();                 // define our app using express
-var port              = 3333;
 
 var witouch           = require('witouch-mainserver');
 var feedManager       = require('feed-manager');
