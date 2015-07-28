@@ -15,6 +15,8 @@ var bodyParser        = require('body-parser');
 
 var config 			  = require('config');
 
+var clientCookie 	  = require('client-cookie-utils');
+
 app.use(cookieParser()); 
 app.use(bodyParser());
 app.set('view engine', 'ejs');
@@ -23,6 +25,9 @@ app.use(session({ secret: 'ilovescotchscotchyscotchscotch' }));
 app.use(flash());
 
 var router = express.Router();
+
+//console.log(__dirname + "/config/client.json");
+clientCookie.setCookiePath(__dirname + "/config/client.json");
 
 require('./routes')(router);
 app.use('/', router);

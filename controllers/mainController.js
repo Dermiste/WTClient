@@ -55,7 +55,7 @@ exports.post.signup = function (req,res){
         opt.method  = "POST";
         opt.data    = {"email":req.body.email,"password":req.body.password,"name":req.body.name};
         curl.request(opt, function(err, resData){
-            console.log("Signup response :");
+            console.log("mainController :: signup :");
             var data = JSON.parse(resData);
             console.log(data);
             if (data.success == true){
