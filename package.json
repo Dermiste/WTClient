@@ -8,7 +8,7 @@
     	"socket.io-client" : "1.3.5",
         "socket.io":"1.3.5",
         "curlrequest": "0.5.2",
-        "node-libnmap":"0.1.12",
+        "node-libnmap":"0.1.13",
         "nconf":"0.7.1",
         "ejs" : "~0.8.5",
         "express": "~4.0.0",
