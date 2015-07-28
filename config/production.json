@@ -1,4 +1,7 @@
 {
+	"WebManager":{
+		"port":"80"
+	},
 	"Server": {
 		"api":"http://5.196.89.139:8080/api/"
 	},

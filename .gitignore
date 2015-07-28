@@ -1,5 +1,6 @@
 .DS_Store
 node_modules/*
+config/client.json
 !node_modules/client-cookie-utils
 !node_modules/feed-manager
 !node_modules/witouch-mainserver

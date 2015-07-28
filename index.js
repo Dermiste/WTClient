@@ -29,7 +29,9 @@ require('./routes')(router);
 app.use('/', router);
 
 app.use('/static', express.static(__dirname + '/public'));
+var port = config.get("WebManager.port");
 app.listen(port);
+console.log("Web Manager started on port "+port);
 
 witouch.attemptStart();
 
