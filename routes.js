@@ -5,6 +5,7 @@ var fs                  = require('fs');
 var scanner             = require('node-libnmap');
 var childProcess        = require('child_process');
 var onvif               = require('onvif');
+var clientCookie        = require('client-cookie-utils');
 var Cam                 = onvif.Cam;
 
 
@@ -33,11 +34,9 @@ module.exports = function(app){
 };
 
 function isLoggedIn(req, res, next) {
-	var fs    = require('fs');
-	try {
-	  fs.statSync('./config/client.json');
+    if (clientCookie.isClientCookiePresent()){
 	  next();
-	} catch (e){
+	} else {
 	  res.redirect('./setup');
 	}
 }
