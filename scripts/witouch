@@ -1,0 +1,35 @@
+### BEGIN INIT INFO
+# Provides:              witouch
+# Required-Start:    $remote_fs $named $syslog
+# Required-Stop:     $remote_fs $named $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: WiTouch web manager
+# Description:       WiTouch web manager
+### END INIT INFO
+
+#!/bin/bash
+
+PATH=$PATH:/sbin:/usr/sbin:/bin:/usr/bin:/usr/local/bin
+NODESCRIPT=/home/pi/WTClient
+
+case "$1" in
+  start)
+    # The -A indicates, adding of this rule
+    sudo iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 3333
+    sudo iptables -t nat -A PREROUTING -i wlan0 -p tcp --dport 80 -j REDIRECT --to-port 3333
+    sudo -u pi NODE_CONFIG_DIR=$NODESCRIPT/config forever start $NODESCRIPT/index.js
+    ;;
+  stop)
+    sudo -u pi forever stop $NODESCRIPT/index.js
+    # The -D indicates, deleting of this rule
+    sudo iptables -t nat -D PREROUTING -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 3333
+    sudo iptables -t nat -D PREROUTING -i wlan0 -p tcp --dport 80 -j REDIRECT --to-port 3333
+    ;;
+  *)
+
+  echo "Usage: /etc/init.d/witouch {start|stop}"
+  exit 1
+  ;;
+esac
+exit 0

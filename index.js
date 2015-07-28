@@ -14,6 +14,7 @@ var cookieParser      = require('cookie-parser');
 var bodyParser        = require('body-parser');
 
 var config 			  = require('config');
+export NODE_CONFIG='{"NODE_CONFIG_DIR":"/home/pi/WTClient"}'
 
 app.use(cookieParser()); 
 app.use(bodyParser());

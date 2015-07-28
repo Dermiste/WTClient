@@ -55,10 +55,11 @@ exports.post.signup = function (req,res){
         opt.method  = "POST";
         opt.data    = {"email":req.body.email,"password":req.body.password,"name":req.body.name};
         curl.request(opt, function(err, resData){
+            console.log("Signup response :");
             var data = JSON.parse(resData);
+            console.log(data);
             if (data.success == true){
                 clientCookie.writeClientCookie(data.user);
-                //fs.writeFileSync('./../config/client.json',JSON.stringify(data.user));
                 witouch.attemptStart();
                 res.redirect('/');
             } else {
