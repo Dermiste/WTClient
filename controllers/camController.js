@@ -72,7 +72,7 @@ exports.feedLookup = function(req, res){
                 res.json(data);
             } else {
                 data.stream = stream;
-                var rtmpUri = "rtmp://localhost/live/"+clientCookie.getNewFeedName();
+                var rtmpUri = config.get('Stream.baseUrl')+clientCookie.getNewFeedName();
 
                 var rtspUri = data.stream.uri;
                 ff = childProcess.spawn("ffmpeg", ["-re","-rtsp_transport","tcp","-i",rtspUri,"-c:v","copy","-c:a","copy","-f","flv",rtmpUri]);

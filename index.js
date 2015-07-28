@@ -16,8 +16,6 @@ var bodyParser        = require('body-parser');
 
 var config 			  = require('config');
 
-console.log("API :"+config.get('Server.api'));
-
 app.use(cookieParser()); 
 app.use(bodyParser());
 app.set('view engine', 'ejs');

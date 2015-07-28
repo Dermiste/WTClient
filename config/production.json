@@ -1,5 +1,11 @@
 {
 	"Server": {
 		"api":"http://5.196.89.139:8080/api/"
+	},
+	"Socket": {
+		"baseUrl":"http://5.196.89.139:8081/"
+	},
+	"Stream":{
+		"baseUrl":"rtmp://5.196.89.139/live/"
 	}
 }

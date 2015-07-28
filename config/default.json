@@ -1,5 +1,11 @@
 {
 	"Server": {
 		"api":"http://localhost:8080/api/"
+	},
+	"Socket": {
+		"baseUrl":"http://localhost:8081/"
+	},
+	"Stream":{
+		"baseUrl":"rtmp://localhost/live/"
 	}
 }
