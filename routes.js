@@ -3,7 +3,6 @@ var http                = require('http');
 var querystring         = require('querystring');
 var fs                  = require('fs');
 var scanner             = require('node-libnmap');
-var arp                 = require('node-arp');
 var childProcess        = require('child_process');
 var onvif               = require('onvif');
 var Cam                 = onvif.Cam;
