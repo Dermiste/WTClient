@@ -9,7 +9,7 @@ var config              = require('config');
 exports.home = function (req, res){
 	var u = clientCookie.getClientCookie();//JSON.parse(fs.readFileSync('./config/client.json'));
     u.isOnline = witouch.isConnected;
-    res.render('home.ejs', {tagline:"Home",user:u}); 
+    res.render('home.ejs', {tagline:"Home",user:u,serverPath:config.get('Socket.baseUrl')}); 
 };
 
 exports.setup = function (req, res){
