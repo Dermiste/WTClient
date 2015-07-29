@@ -105,7 +105,7 @@ exports.stopFFmpeg = function(req,res){
 exports.addCam = function(req,res){
     console.log("addCam :: body");
     console.log(req.body);
-    // first add online
+    // TODO, write full object online
     var opt     = {};
     opt.url     = config.get('Server.api')+"registerCam";
     opt.method  = "POST";
